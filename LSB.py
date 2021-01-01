@@ -1,5 +1,6 @@
 from PIL import Image
 import numpy as np
+import os
 
 def compute_layers(array, mode, filename):
 		# Compute each bits visual image for a given layer
@@ -36,4 +37,8 @@ def extract_views(path):
 
 def LSB(path):
 	print("Extracting bit layers, please wait...")
+	# Create Views directory if don't exist
+	if not os.path.exists("Views"):
+	    os.mkdir("Views")
+
 	extract_views(path)	

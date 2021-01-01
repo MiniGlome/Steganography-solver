@@ -1,8 +1,11 @@
 import sys
-from os import path
+import os
 
 def Thumbnail(file_path):
 	print("Extracting Thumbnail...")
+	# Create Thumbnails directory if don't exist
+	if not os.path.exists("Thumbnails"):
+	    os.mkdir("Thumbnails")
 
 	startheader = "\xff\xd8"
 	endheader = "\xff\xd9"	
@@ -32,6 +35,6 @@ def Thumbnail(file_path):
 		        out.write(img.encode("latin-1"))	 
 		print("[+] Thumbnail saved as " + outname)
 
-	_, file_extension = path.splitext(file_path)
+	_, file_extension = os.path.splitext(file_path)
 	if file_extension not in ['.jpg', '.jpeg'] and nb_thumbnails > 0:
 		print("[-] The file is not a JPG, the thumbnails found may be false positives")
